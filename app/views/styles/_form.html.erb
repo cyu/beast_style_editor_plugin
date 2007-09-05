@@ -1,0 +1,25 @@
+<p class="help"></p>
+
+<p>
+  <label for="style_name"><%= 'Name'[] %></label><br />
+  <%= form.text_field :name %>
+</p>
+
+<p>
+  <label for="style_template_name"><%= 'Template'[] %></label><br />
+  <%= form.text_field :template_name %>
+</p>
+
+
+<script type="text/javascript">//<![CDATA[
+function copyValue(field, value){
+	var f=$(field);f.value = value;f.select();f.focus(); 
+}
+//]]></script>
+
+<% @style.template_options.each_with_index do |option, index| -%>
+<p>
+	<label for="<%= option_input_id(option) %>"><%= option.display_name %></label><br />
+	<%= option_field option %>
+</p>
+<% end -%>
