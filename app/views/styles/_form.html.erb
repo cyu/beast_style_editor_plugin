@@ -1,5 +1,7 @@
 <p class="help"></p>
 
+<%= error_messages_for :style %>
+
 <p>
   <label for="style_name"><%= 'Name'[] %></label><br />
   <%= form.text_field :name %>
@@ -7,7 +9,7 @@
 
 <p>
   <label for="style_template_name"><%= 'Template'[] %></label><br />
-  <%= form.text_field :template_name %>
+  <%= form.select :template_name, StyleEditor::Template.available_templates, :onchange => 'alert("here")' %>
 </p>
 
 
