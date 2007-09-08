@@ -4,7 +4,7 @@ options:
   type: :color
 - name: header_background_color
   default: '#111111'
-  type:color
+  type: :color
 - name: header_border_color
   default: '#999'
   type: :color
