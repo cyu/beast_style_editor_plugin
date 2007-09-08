@@ -1,6 +1,10 @@
 class Style < ActiveRecord::Base
   has_many :options, :table_name => 'style_options', :class_name => 'StyleOption'
 
+  validates_presence_of :name, :template_name
+  
+  attr_protected :active
+
   def self.find_active
     find(:first, :conditions => {:active => true}) ||
         Style.create!(:name => 'Default Style', :template_name => 'default', :active => true) 

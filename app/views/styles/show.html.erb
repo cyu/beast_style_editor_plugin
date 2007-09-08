@@ -1,0 +1,19 @@
+<h1 style="margin-top:0;"><%= h(@style.name) %>
+  <span>
+    <%= link_to('edit'[], edit_style_path(@style), :class => "utility") %> |
+    <%= link_to('delete'[], style_path(@style), :class => "utility", :method => :delete, :confirm => 'Delete this style forever?'[:delete_style_conf]) %>
+  </span>
+</h1>
+
+<table border="0" cellspacing="0" cellpadding="0" class="wide forums">
+  <tr>
+    <th class="la"><%= 'Style Property'[] %></th>
+    <th><%= 'Style Value'[] %></th>
+  </tr>
+<% @style.template_options.each do |option|-%>  
+  <tr>
+    <td><%= h option.name %></td>
+    <td class="la"><%= color_swatch(option) if option.color? %> <%= option.evaluated_value %></td>
+  </tr>
+<% end %>
+</table>

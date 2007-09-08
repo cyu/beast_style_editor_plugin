@@ -9,11 +9,9 @@
 <% end -%>
 
 <% if admin? %>
-<h6><%= 'Admin'[:admin_title] %></h6>
-<p><%= link_to('Create New Style', new_style_path, :class => "utility") %></p>
-<% end %>
-
-
+  <h6><%= 'Admin'[:admin_title] %></h6>
+  <p><%= link_to('Create New Style', new_style_path, :class => "utility") %></p>
+  <% end %>
 <% end -%>
 
 <h1 style="margin-top:0;"><%= 'Styles'[:styles_title] %></h1>
@@ -30,7 +28,13 @@
   </tr>
 <% @styles.each do |style|-%>  
   <tr>
-    <td><%= link_to h(style.name), style_path(style) %> [<%= link_to('edit', edit_style_path(style)) %>]</td>
+    <td>
+      <%= link_to h(style.name), style_path(style), :class => (style.active? ? "admin" : nil) %> &mdash;
+      <%= link_to('edit', edit_style_path(style)) %>
+      <% unless style.active? -%>
+      	| <%= link_to 'activate'[], activate_style_path(:id => style) %> 
+      <% end -%>
+    </td>
     <td class="la"><%= style.template_name %></td>
   </tr>
 <% end %>
