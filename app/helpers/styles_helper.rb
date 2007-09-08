@@ -14,8 +14,12 @@ module StylesHelper
     s
   end
 
+  def color_swatch(option)
+  	"<span id=\"#{option.name}_color\" style=\"padding: 0 15px; background-color: #{option.evaluated_value}; border: 1px solid #000;\"></span>"
+  end
+
   def color_option_field_helper(option)
-    s = "<span id=\"#{option.name}_color\" style=\"padding: 0 15px; background-color: #{option.evaluated_value}\"></span>"
+    s = color_swatch(option)
     s << javascript_tag("Event.observe('#{option_input_id(option)}', 'blur', function(){if($F('#{option_input_id(option)}') != '')$('#{option.name}_color').style.backgroundColor = $F('#{option_input_id(option)}')})")
     s
   end
