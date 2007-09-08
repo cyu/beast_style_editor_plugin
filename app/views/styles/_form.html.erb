@@ -9,7 +9,9 @@
 
 <p>
   <label for="style_template_name"><%= 'Template'[] %></label><br />
-  <%= form.select :template_name, StyleEditor::Template.available_templates, :onchange => 'alert("here")' %>
+  <%= form.select :template_name, StyleEditor::Template.available_templates, {},
+          :onchange => remote_function(:update => 'style_options', :url => {:action => 'options', :id => @style},
+          :submit => 'style_form', :before => '$("style_options").update("Loading Style Options...")') %>
 </p>
 
 
@@ -19,9 +21,6 @@ function copyValue(field, value){
 }
 //]]></script>
 
-<% @style.template_options.each_with_index do |option, index| -%>
-<p>
-	<label for="<%= option_input_id(option) %>"><%= option.display_name %></label><br />
-	<%= option_field option %>
-</p>
-<% end -%>
+<div id="style_options">
+<%= render_partial 'form_options' %>
+</div>

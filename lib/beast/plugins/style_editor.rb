@@ -12,6 +12,7 @@ module Beast
         Dependencies.load_paths << File.expand_path(path) if File.exist?(path)
       end
 
+      route :style_options, 'styles/options/:id', :controller => 'styles', :action => 'options'
       route :activate_style, 'styles/activate/:id', :controller => 'styles', :action => 'activate'
       route :resources, 'styles'
 

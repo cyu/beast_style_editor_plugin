@@ -2,7 +2,7 @@
 
 <% form_for :style,
      :url  => style_path(@style),
-     :html => { :method => :put } do |f| -%>
+     :html => { :method => :put, :id => 'style_form' } do |f| -%>
 <%= render :partial => "form", :object => f %>
 <%= submit_tag 'Save Style'[:save_style], :or => link_to('Cancel'[:cancel], styles_path) %>
 <% end -%>

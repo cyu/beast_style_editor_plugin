@@ -51,6 +51,11 @@ class StylesController < ApplicationController
     redirect_to styles_path
   end
 
+  def options
+    @style.template_name = params[:style][:template_name]
+    render :partial => 'form_options', :layout => false
+  end
+
   protected
 
     def find_or_initialize_style

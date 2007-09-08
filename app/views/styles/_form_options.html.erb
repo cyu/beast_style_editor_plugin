@@ -1,0 +1,6 @@
+<% @style.template_options.each_with_index do |option, index| -%>
+<p>
+	<label for="<%= option_input_id(option) %>"><%= option.display_name %></label><br />
+	<%= option_field option %>
+</p>
+<% end -%>
