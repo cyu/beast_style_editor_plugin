@@ -33,6 +33,8 @@ class Style < ActiveRecord::Base
   end
   
   def generate_css(file=nil)
+    FileUtils.mkdir_p(File.dirname(file)) if file && !File.exist?(File.dirname(file))
+    
     s = template.render(template_options)
     if file
       FileUtils.mkdir_p(File.dirname(file))
