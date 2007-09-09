@@ -31,7 +31,7 @@ class StylesController < ApplicationController
   def update
     save_style_options
     @style.update_attributes! params[:style]
-    generate_css
+    generate_css if @style.active?
 
     respond_to do |format|
       format.html { redirect_to styles_path }
@@ -40,11 +40,11 @@ class StylesController < ApplicationController
   end
   
   def activate
+    generate_css
     unless @style.active?
       Style.update_all('active = 0', {:active => true})
       @style.active = true
       @style.save!
-      generate_css
     end
     redirect_to styles_path
   rescue ActiveRecord::RecordInvalid
@@ -75,7 +75,7 @@ class StylesController < ApplicationController
     end
 
     def generate_css
-      @style.generate_css(edited_stylesheet_file) if @style.active?
+      @style.generate_css(edited_stylesheet_file)
     end
 
 end
