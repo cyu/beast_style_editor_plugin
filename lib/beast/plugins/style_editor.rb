@@ -3,13 +3,15 @@ module Beast
 
     class StyleEditor < Beast::Plugin
       author 'Calvin Yu - boardista.com'
-      version '0001'
+      version '0002'
       homepage 'http://boardista.com'
       notes 'Style Editing Support'
 
       %w( controllers helpers models ).each do |dir|
-        path = File.join(plugin_path, 'app', dir)
-        Dependencies.load_paths << File.expand_path(path) if File.exist?(path)
+        path = File.expand_path(File.join(plugin_path, 'app', dir))
+        if File.exist?(path) && !Dependencies.load_paths.include?(path)
+          Dependencies.load_paths << path
+        end
       end
 
       route :style_options, 'styles/options/:id', :controller => 'styles', :action => 'options'
