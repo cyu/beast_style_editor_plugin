@@ -3,7 +3,7 @@ module Beast
 
     class StyleEditor < Beast::Plugin
       author 'Calvin Yu - boardista.com'
-      version '0002'
+      version '0003'
       homepage 'http://boardista.com'
       notes 'Style Editing Support'
 
