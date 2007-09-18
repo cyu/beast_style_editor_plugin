@@ -1,8 +1,7 @@
 class Style < ActiveRecord::Base
-  has_many :options, :table_name => 'style_options', :class_name => 'StyleOption'
 
+  has_many :options, :table_name => 'style_options', :class_name => 'StyleOption'
   validates_presence_of :name, :template_name
-  
   attr_protected :active
 
   def self.find_active
