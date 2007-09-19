@@ -62,7 +62,7 @@ class StylesController < ApplicationController
       @style = params[:id] ? Style.find(params[:id]) : Style.new(:template_name => 'default')
     end
 
-    def edited_stylesheet_file
+    def generated_stylesheet_file
       File.join(RAILS_ROOT, 'public', 'stylesheets', '_display.css')
     end
 
