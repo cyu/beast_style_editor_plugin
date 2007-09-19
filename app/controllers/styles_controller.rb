@@ -75,7 +75,7 @@ class StylesController < ApplicationController
     end
 
     def generate_css
-      @style.generate_css(edited_stylesheet_file)
+      @style.generate_css(generated_stylesheet_file)
     end
 
 end
