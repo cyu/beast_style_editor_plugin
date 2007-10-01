@@ -23,9 +23,9 @@ module Beast
         ApplicationController.prepend_view_path File.join(StyleEditor::plugin_path, 'app', 'views')
       end # end of initialize
       
-      def install
-        super
-        FileUtil.copy(File.join(RAILS_ROOT, 'public', 'stylesheets', 'display.css'),
+      def self.install
+        self::Schema.install
+        FileUtils.copy(File.join(RAILS_ROOT, 'public', 'stylesheets', 'display.css'),
             File.join(RAILS_ROOT, 'public', 'stylesheets', '_display.css'))
       end
 
