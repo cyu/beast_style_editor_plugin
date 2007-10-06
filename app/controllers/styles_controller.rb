@@ -41,11 +41,7 @@ class StylesController < ApplicationController
   
   def activate
     generate_css
-    unless @style.active?
-      Style.update_all('active = 0', {:active => true})
-      @style.active = true
-      @style.save!
-    end
+    @style.activate! unless @style.active?
     redirect_to styles_path
   rescue ActiveRecord::RecordInvalid
     redirect_to styles_path

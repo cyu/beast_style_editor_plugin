@@ -42,6 +42,13 @@ class Style < ActiveRecord::Base
     s
   end
 
+  # Activate this style.  Will deactivate any activated styles
+  def activate!
+    Style.update_all("active = #{connection.quoted_false}", {:active => true})
+    self.active = true
+    self.save!
+  end
+
   protected
 
     def template
